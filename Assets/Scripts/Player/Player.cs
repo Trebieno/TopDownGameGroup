@@ -8,11 +8,14 @@ public class Player : MonoBehaviour, IAttackable
     [SerializeField] private float _maxHealth;
     [SerializeField] private float _curHealth;
     [SerializeField] private float _radiusUse;
-    [SerializeField] private bool _isActiveUse => Input.GetButtonDown("Use");
-    [SerializeField] private bool _isActiveLooting => Input.GetButtonDown("Looting");
+
+    [Space(10)]
     [SerializeField] private Transform _usePoint;
     [SerializeField] private LayerMask _useMask;
     [SerializeField] private LayerMask _lootingMask;
+
+    private bool _isActiveUse => Input.GetButtonDown("Use");
+    private bool _isActiveLooting => Input.GetButtonDown("Looting");
 
     private Movement _movement;
     public Movement Movement => _movement;

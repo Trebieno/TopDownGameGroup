@@ -3,10 +3,7 @@ using UnityEngine;
 public class Loot : MonoBehaviour, ILootable
 {
     [SerializeField] private int _bullet;
-    public int Bullet => _bullet;
-
-    [SerializeField] private int _reserveBullet;
-    public int ReserveBullet => _reserveBullet;
+    public int Count => _bullet;
 
     [SerializeField] private string _type;
     public string Type => _type;
@@ -17,10 +14,9 @@ public class Loot : MonoBehaviour, ILootable
     [SerializeField] private SpriteRenderer _skin;
     [SerializeField] private Rigidbody2D _rb2D;
 
-    public void Initialization(int bullet, int reserveBullet, string type, Sprite sprite, Vector2 direction)
+    public void Initialization(int count, string type, Sprite sprite, Vector2 direction)
     {
-        _bullet = bullet;
-        _reserveBullet = reserveBullet;
+        _bullet = count;
         _type = type;
         _skin.sprite = sprite;
 

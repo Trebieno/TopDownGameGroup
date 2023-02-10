@@ -43,7 +43,7 @@ public class Shooting : MonoBehaviour
             return;
 
         Loot loot = Instantiate(_prefabLoot, transform.position, transform.rotation);
-        loot.Initialization(Weapon.Bullets, Weapon.ReserveBullets, Weapon.Type, Weapon.Sprite, transform.up);
+        loot.Initialization(Weapon.Bullets, Weapon.Type, Weapon.Sprite, transform.up);
         Weapon.IsHaveGun = false;
         Weapon.ResetBullet();
         Weapon.gameObject.SetActive(false);

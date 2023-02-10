@@ -4,8 +4,20 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     [SerializeField] private float _speed;
+
+    [Header("Run")]
+    [SerializeField] private float _maxSpeedTime = 5;
+    [SerializeField] private float _curSpeedTime;
+
+    [SerializeField] private float _maxCooldownTime = 0.5f;
+    [SerializeField] private float _curCooldownTime;
+
+    [SerializeField] private float _smooth;
     [SerializeField] private float _runSpeed;
     [SerializeField] private bool _isActiveRun => Input.GetButton("Run");
+    private bool _isRun = false;
+    private bool _isSpeedTimeFull;
+
     private Rigidbody2D _rb;
     private Vector2 _mousePosition;
     private Camera _camera;
@@ -22,11 +34,33 @@ public class Movement : MonoBehaviour
         _rb.velocity = new Vector2();
         Vector3 movePose;
         
-        if(_isActiveRun)
+        if(_isActiveRun && _curSpeedTime > 0)
+        {
             movePose = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * _runSpeed;
-        else
-            movePose = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * _speed;
+            _curSpeedTime -= Time.deltaTime;
+            _isRun = true;
+        }
 
+        else
+        {
+            movePose = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * _speed;
+            _isRun = false;
+        }
+
+        if(_curSpeedTime <= 0 && _curCooldownTime <= 0)
+        {
+            _curCooldownTime = _maxCooldownTime;
+        }
+
+        if(_curCooldownTime > 0)
+        {
+            _curCooldownTime -= Time.deltaTime;
+        }
+
+        if(_curCooldownTime <= 0 && _curSpeedTime < _maxSpeedTime && !_isRun)
+        {
+            _curSpeedTime += Time.deltaTime;
+        }
         _rb.velocity = movePose; 
 
 
