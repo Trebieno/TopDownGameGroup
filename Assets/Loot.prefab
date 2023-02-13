@@ -129,9 +129,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bullet: 0
-  _reserveBullet: 0
   _type: 
-  _speed: 3
+  _speedForceLoot: 3.73
   _skin: {fileID: 4538337479834586442}
   _rb2D: {fileID: 4538337480778006412}
 --- !u!50 &4538337480778006412

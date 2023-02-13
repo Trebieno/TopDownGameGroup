@@ -8,8 +8,8 @@ public class Loot : MonoBehaviour, ILootable
     [SerializeField] private string _type;
     public string Type => _type;
 
-    [SerializeField] private float _speed;
-    public float Speed => _speed;
+    [SerializeField] private float _speedForceLoot;
+    public float Speed => _speedForceLoot;
 
     [SerializeField] private SpriteRenderer _skin;
     [SerializeField] private Rigidbody2D _rb2D;
@@ -23,7 +23,7 @@ public class Loot : MonoBehaviour, ILootable
         if(_rb2D == null)
             _rb2D = GetComponent<Rigidbody2D>();
 
-        _rb2D.AddForce(direction * _speed, ForceMode2D.Impulse);
+        _rb2D.AddForce(direction * _speedForceLoot, ForceMode2D.Impulse);
     }
 
     public void TakeLoot(Player player)
